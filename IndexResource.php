@@ -2,6 +2,14 @@
 
 class IndexResource extends \watoki\curir\Container {
 
+    public function doPost($article, $email, $comment) {
+        mail("me@example.com", "New comment on $article", $comment, "From: $email");
+
+        return array_merge($this->doGet(), [
+            "message" => "Thanks for your comment. I'll publish it soon."
+        ]);
+    }
+
     public function doGet() {
         return [
             'article' => $this->assembleArticles()
