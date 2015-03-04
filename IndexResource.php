@@ -24,7 +24,7 @@ class IndexResource extends \watoki\curir\Container {
         list($date, $title) = explode('__', basename($articleFile));
 
         return [
-            'link' => array('href' => $articleFile),
+            'link' => array('href' => 'article.html?article=' . substr(basename($articleFile), 0, -5)),
             'date' => date('Y, F dS', strtotime($date)),
             'title' => str_replace(['_', '.html'], ' ', $title)
         ];
