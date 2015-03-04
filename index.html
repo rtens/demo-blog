@@ -11,11 +11,13 @@
 <h4>Wait! Don't go! I have lots of interesting stuff here that you can read. Give it a try!</h4>
 
 <ul>
-    <?php foreach ($articles as $article) { ?>
-    <li>
-        <a href="<?php echo $article ?>"><?= str_replace(["_", ".html"], " ", basename($article)); ?></a>
+    <li property="article">
+        <span property="date">2011, December 13th</span>
+        -
+        <a property="link" href="articles/some_article.html">
+            <span property="title">Title of my article</span>
+        </a>
     </li>
-    <?php } ?>
 </ul>
 
 </body>
