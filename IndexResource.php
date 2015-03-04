@@ -1,12 +1,8 @@
 <?php
 
-class IndexResource {
+class IndexResource implements \watoki\deli\Responding {
 
-    public function __construct($articlesFolder) {
-        $this->folder = $articlesFolder;
-    }
-
-    public function respond() {
+    public function respond(\watoki\deli\Request $r) {
         $renderer = new \watoki\tempan\Renderer(file_get_contents('index.html'));
         return $renderer->render([
             'article' => $this->assembleArticles()

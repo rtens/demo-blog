@@ -1,5 +1,6 @@
 {
     "require": {
-        "watoki/tempan": "~1.0"
+        "watoki/tempan": "~1.0",
+        "watoki/curir": "0.2.*"
     }
 }
