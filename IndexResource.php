@@ -1,5 +1,7 @@
 <?php
 
+use watoki\deli\router\MultiRouter;
+
 class IndexResource extends \watoki\curir\Container {
 
     public function doPost($article, $email, $comment) {
@@ -29,9 +31,15 @@ class IndexResource extends \watoki\curir\Container {
         list($date, $title) = explode('__', basename($articleFile));
 
         return [
-            'link' => array('href' => 'article.html?article=' . substr(basename($articleFile), 0, -5)),
+            'link' => array('href' => 'articles/' . substr(basename($articleFile), 0, -5) . '.html'),
             'date' => date('Y, F dS', strtotime($date)),
             'title' => str_replace(['_', '.html'], ' ', $title)
         ];
+    }
+
+    protected function createRouter() {
+        $router = new \watoki\deli\router\DynamicRouter();
+        $router->addObjectPath('articles/{article}', ArticleResource::class, $this->factory);
+        return new MultiRouter([$router, parent::createRouter()]);
     }
 }
