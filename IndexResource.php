@@ -1,12 +1,11 @@
 <?php
 
-class IndexResource implements \watoki\deli\Responding {
+class IndexResource extends \watoki\curir\Container {
 
-    public function respond(\watoki\deli\Request $r) {
-        $renderer = new \watoki\tempan\Renderer(file_get_contents('index.html'));
-        return $renderer->render([
+    public function doGet() {
+        return [
             'article' => $this->assembleArticles()
-        ]);
+        ];
     }
 
     function assembleArticles() {
